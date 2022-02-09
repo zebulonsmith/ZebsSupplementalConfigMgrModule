@@ -1,0 +1,1 @@
+# Smitty-ConfigManagerModule
