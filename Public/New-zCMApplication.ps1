@@ -18,7 +18,7 @@ Optional folder path to move the Application to after creation
 When specified, the new Package will be deleted if any critical part of the creation and configuration fails.
 
 .PARAMETER SiteInfo
-An instance of zCMSiteInfo representing the SCCM Site Server to query against. Can be created via [zCMSiteInfo]::new() or by using New-zCMSiteServerObject. 
+An instance of zCMSiteInfo representing the SCCM Site Server to query against. Can be created via [zCMSiteInfo]::new() or by using New-zCMSiteServerObject.
 Will be created using default configuration if not specified, which will work fine in most situations.
 
 .EXAMPLE
@@ -41,12 +41,12 @@ Function New-zCMApplication {
         [Parameter(Mandatory=$false)]
         [string[]]
         $SecurityScopeNames,
-        
+
         # Destination folder within a ConfigMgr PSDrive to move the collection to after creation. Will be created in the root of the Collections node.
         [Parameter(Mandatory=$false)]
         [string]
         $DestinationFolderPath,
-        
+
         # Attempt to delete the object is it is not created properly
         [Parameter(Mandatory=$false)]
         [switch]
@@ -78,10 +78,10 @@ Function New-zCMApplication {
 
     #Throw an error if an app with the same name already exists
     try {
-        $AppTest = Get-CMOperatingSystemImage -Name $ApplicationName
+        $AppTest = Get-CMApplication -Name $ApplicationName
     }
     catch {
-        Write-Error "Unable to validate OS Image."
+        Write-Error "Unable to validate Application."
         Throw $_
     }
 
@@ -117,7 +117,7 @@ Function New-zCMApplication {
             Throw $_
         }
     }
-    
+
         #Move the OS Image
         if ($DestinationFolderPath) {
             Write-Verbose "Moving '$ApplicationName' to '$DestinationFolderPath'"
