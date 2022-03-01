@@ -32,17 +32,17 @@ function Get-zCMWMIQuery {
         #Instance zCMSiteInfo class. Only needs to be set when the site server needs to be specified
         [Parameter(Mandatory=$false)]
         [zCMSiteInfo]$SiteInfo = [zCMSiteInfo]::new(),
-        
+
         #Optional credential object
         [Parameter(Mandatory=$false)]
         [ValidateNotNull()]
         [System.Management.Automation.PSCredential]
         [System.Management.Automation.Credential()]
-        $Credential = [System.Management.Automation.PSCredential]::Empty   
+        $Credential = [System.Management.Automation.PSCredential]::Empty
     )
 
 
-    
+
 
     <#
         New-CIMSession doesn't know what to do with a [System.Management.Automation.PSCredential]::Empty object in the -Credential param.

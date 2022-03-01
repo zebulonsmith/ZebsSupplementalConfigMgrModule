@@ -5,7 +5,7 @@
       .DESCRIPTION
       Allows Public functions to be launched with more flexibility, depending on where they are executed from.
       Also makes it easy to determine if the MS ConfigMgr module is available when it is needed.
-      
+
       Most other functions in this module will accept an object of this type as input so that the values can be specified manually
       as needed. 
 
@@ -32,7 +32,7 @@
       .PARAMETER MSConfigMgrModulePath
       If the ConfigMgr console is not installed in the default location, or $ENV:SMS_ADMIN_UI_PATH does not exist, this must be specified.
 
-    
+
       #>
 function New-zCMSiteServerObject {
 
