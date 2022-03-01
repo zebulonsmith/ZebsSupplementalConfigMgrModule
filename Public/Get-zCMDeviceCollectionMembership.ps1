@@ -35,9 +35,9 @@ Get-zCMDeviceCollectionmembership -ResourceID 16794302
 Search using ResourceID, do not return any objects and show a table with the results found
 Get-zCMDeviceCollectionmembership -ResourceID 16794302 -ShowPrettyOutput -NoReturnObject
 #>
-Function Get-zCMDeviceCollectionMembership {    
+Function Get-zCMDeviceCollectionMembership {
 
-    
+
     Param (
         [Parameter(ParameterSetName="DeviceObject",ValueFromPipeLine=$true)]
         $InputObject,
@@ -86,7 +86,7 @@ Function Get-zCMDeviceCollectionMembership {
                         }#DeviceObject
 
         "ByName"      {
-                            
+
                             Write-Debug "Using ComputerName to validate the device."
 
                             #No wildcard searches.
