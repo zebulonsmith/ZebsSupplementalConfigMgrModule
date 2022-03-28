@@ -28,7 +28,7 @@ A schedule created using New-CMSchedule from the Microsoft ConfigurationManager 
 Select this switch to attempt to delete the collection if it is not created properly.
 
 .PARAMETER SiteInfo
-An instance of zCMSiteInfo representing the SCCM Site Server to query against. Can be created via [zCMSiteInfo]::new() or by using New-zCMSiteServerObject. 
+An instance of zCMSiteInfo representing the SCCM Site Server to query against. Can be created via [zCMSiteInfo]::new() or by using New-zCMSiteServerObject.
 Will be created using default configuration if not specified, which will work fine in most situations.
 
 
@@ -43,7 +43,7 @@ New-zCMUserCollection -CollectionName "Test" -LimitingCollectionName "All System
 .EXAMPLE
 Create a new collection, specifying a destination folder and some query rules
 $QryRules = @(
-    'select SMS_R_USER.ResourceID,SMS_R_USER.ResourceType,SMS_R_USER.Name,SMS_R_USER.UniqueUserName,SMS_R_USER.WindowsNTDomain from SMS_R_User where SMS_R_User.UserGroupName = "KENT\\CIG Users"'    
+    'select SMS_R_USER.ResourceID,SMS_R_USER.ResourceType,SMS_R_USER.Name,SMS_R_USER.UniqueUserName,SMS_R_USER.WindowsNTDomain from SMS_R_User where SMS_R_User.UserGroupName = "Domain\\GroupName"'
     )
 New-zCMUserCollection -CollectionName "Test" -LimitingCollectionName "All Systems" -DestinationFolderPath 'CCM:\UserCollection\Folder' -CollectionComment "This is a test" -MembershipQueryRules $QryRules
 
@@ -65,7 +65,7 @@ Function New-zCMUserCollection {
         [string]
         $CollectionComment = "",
 
-        # Array of strings representing query rules for the collection. May be left empty.      
+        # Array of strings representing query rules for the collection. May be left empty.
         [Parameter(Mandatory=$false)]
         [string[]]
         $MembershipQueryRules,
@@ -78,7 +78,7 @@ Function New-zCMUserCollection {
         [Parameter(Mandatory=$false)]
         [string]
         $DestinationFolderPath,
-        
+
         # Attempt to delete the object is it is not created properly
         [Parameter(Mandatory=$false)]
         [switch]

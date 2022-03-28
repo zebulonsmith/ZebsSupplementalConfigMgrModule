@@ -29,7 +29,7 @@ function Find-zCMDevice {
         [Parameter(ParameterSetName="ByMac", Mandatory=$true)]
         [string]
         $MacAddress,
-        
+
         # Search by Serial Number
         [Parameter(ParameterSetName="BySerial", Mandatory=$true)]
         [string]
@@ -52,10 +52,10 @@ function Find-zCMDevice {
     catch {
         Throw $_
     }
-   
+
     #Set up a WMI query to use for finding devices based on the provided search parameters
     switch ($PSCmdlet.parameterSetName) {
-        "ByMac" { 
+        "ByMac" {
             #Convert the provided mac address to a format that SCCM likes
             Write-Verbose "Searching by MAC"
             Try {
@@ -63,7 +63,7 @@ function Find-zCMDevice {
             } Catch {
                 Throw $_
             }
-            $DeviceQry = "select ResourceID from sms_r_system where MACAddresses like '%$($ConvertedMac)%'"         
+            $DeviceQry = "select ResourceID from sms_r_system where MACAddresses like '%$($ConvertedMac)%'"
         } #End of ByMac
 
         "BySerial" {
@@ -73,12 +73,12 @@ function Find-zCMDevice {
 
         Default {}
     }
-    
+
      #Array to hold results of the search. We'll get a list of ResourceIDs, then use Get-CMDevice to resolve them 
      Write-Verbose "Executing WMI Query $DeviceQry"
-     $WMIResults = @(Get-zCMWMIQuery -Query $DeviceQry -siteinfo $SiteInfo)
+     $WMIResults = @(Invoke-zCMWMIQuery -Query $DeviceQry -siteinfo $SiteInfo)
 
-    
+
     #Array of CMDevice objects that will be returned
     $CMDevices = @()
      Foreach ($Result in $WMIResults) {
@@ -100,17 +100,17 @@ function Find-zCMDevice {
         Write-Host "devices matching the search parameters." -ForegroundColor Magenta
 
         #Leave now if we didn't find anything
-        if ($CMDevices.Count -eq 0 ) { 
+        if ($CMDevices.Count -eq 0 ) {
             Write-Verbose "Found zero devices, exiting."
-            return 
+            return
         }
 
         #Found multiple devices. Throw a warning
         if ($CMDevices.Count -gt 1) {
-            Write-Warning "Found $($CMDevices.Count) devices matching the search parameters. Consider deleting them."        
+            Write-Warning "Found $($CMDevices.Count) devices matching the search parameters. Consider deleting them."
         }
 
-  
+
         #Loop through each device and show relevant info
         foreach ($thisDevice in $CMDevices) {
             #I should write a function that uses $Host.UI.RawUI data to figure out how to make a horizontal line.
@@ -142,13 +142,13 @@ function Find-zCMDevice {
             if ($thisDevice.Client -eq 0) {
                 Write-Warning "Device does not have the config manager client installed."
             }
-    
+
 
             Write-Host
-            
-        } 
 
-     } Else {#if ($ShowPrettyResults)
+        }
+
+     } Else {
         Return $CMDevices
      }
 

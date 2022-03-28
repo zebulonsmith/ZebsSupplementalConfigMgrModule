@@ -1,11 +1,18 @@
-function Get-zCMWMIQuery {
+function Invoke-zCMWMIQuery {
     <#
       .SYNOPSIS
-      Run a WMI query against an SCCM Site Server's root\SMS\Site_[SITECODE] namespace.
+      Run a WMI query (actually CIM for futureprofedness) against an SCCM Site Server's root\SMS\Site_[SITECODE] namespace.
 
-      .DESCRIPTION 
-      Runs a WMI query against the root\SMS\Site_[SITECODE] namespace on the Site Server specified in $SiteInfo, which needs to be of type [zCMSiteInfo]. 
-      Intended to be a shorter alternative to 'Get-WMIObject -query [QUERY] -Computername [SERVER] -Namespace root\SMS\Site_[SITECODE]      
+      .DESCRIPTION
+      Runs a WMI query against the root\SMS\Site_[SITECODE] namespace on the Site Server specified in $SiteInfo, which needs to be of type [zCMSiteInfo].
+      Intended to be a shorter alternative to 'Get-WMIObject -query [QUERY] -Computername [SERVER] -Namespace root\SMS\Site_[SITECODE].
+
+      Why use this over Invoke-CMWMIquery? In many cases, a direct query will return more results than the native Invoke-CMWMIQuery cmdlet. We're also taking
+      advantage of the zCMSiteInfo class built into this module and adding the ability to easily query a site server without the Microsoft ConfigurationManager module
+      available.
+
+      Why is this cmdlet called Invoke-zCMWMIQuery when it's actually using CIM? Mostly, to retain some familiar naming convention. The native ConfigurationManager module
+      has a similar cmdlet called 'Invoke-CMWMIQuery.' The same results are returned whether CIM or WMI is used.
 
       .EXAMPLE
       Get-zCMWMIQUery -query "Select * from SMS_CombinedDeviceResources where ResourceID = '167896'"
@@ -26,7 +33,11 @@ function Get-zCMWMIQuery {
     [cmdletBinding()]
     Param(
         #WMI Query to execute
-        [Parameter(Mandatory=$true)]
+        [Parameter(
+            Mandatory=$true,
+            ValueFromPipeline=$true
+            )
+        ]
         [String]$Query,
 
         #Instance zCMSiteInfo class. Only needs to be set when the site server needs to be specified
@@ -47,6 +58,7 @@ function Get-zCMWMIQuery {
     <#
         New-CIMSession doesn't know what to do with a [System.Management.Automation.PSCredential]::Empty object in the -Credential param.
         As a workaround, we'll only use that parameter if the credential object is populated.
+        This makes it fairly simply to handle passing a credential. Credit to https://duffney.io/addcredentialstopowershellfunctions/
     #>
     Try {
         if ($Credential -ne [System.Management.Automation.PSCredential]::Empty) {
@@ -54,7 +66,7 @@ function Get-zCMWMIQuery {
             $CIMSession = New-CimSession -ComputerName $SiteInfo.SCCMServer -Credential $Credential
         } else {
             Write-Verbose "Creating CMSession with current user credentials."
-            $CIMSession = New-CimSession -ComputerName $SiteInfo.SCCMServer        
+            $CIMSession = New-CimSession -ComputerName $SiteInfo.SCCMServer
         }
     } Catch {
         Throw $_
