@@ -3,6 +3,9 @@ function Invoke-zCMWMIQuery {
       .SYNOPSIS
       Run a WMI query (actually CIM for futureprofedness) against an SCCM Site Server's root\SMS\Site_[SITECODE] namespace.
 
+      Does not require that the Configuration Manager console is installed and executes a native WMI query directly against
+      the site server. 
+
       .DESCRIPTION
       Runs a WMI query against the root\SMS\Site_[SITECODE] namespace on the Site Server specified in $SiteInfo, which needs to be of type [zCMSiteInfo].
       Intended to be a shorter alternative to 'Get-WMIObject -query [QUERY] -Computername [SERVER] -Namespace root\SMS\Site_[SITECODE].

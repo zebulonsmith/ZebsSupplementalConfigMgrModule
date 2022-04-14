@@ -8,6 +8,7 @@ if (Test-Path "$PSScriptRoot\Classes\classes.psd1") {
 foreach ($class in $ClassLoadOrder.order) {
     $path = "$PSScriptRoot\classes\$class.ps1"
     if (Test-Path $path) {
+        Write-Verbose "Importing class from $($path)"
         . $path
     }
 }

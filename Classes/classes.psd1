@@ -1,5 +1,6 @@
 @{
     order = @(
-       ,'zCMSiteInfo'
+       'zCMSiteInfo'
+       'zCMStringToWMIOperator'
     )
 }
