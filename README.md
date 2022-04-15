@@ -1,5 +1,7 @@
 # ZebsSupplimentalConfigMgrModule
 
+[https://github.com/zebulonsmith/ZebsSupplimentalConfigMgrModule](https://github.com/zebulonsmith/ZebsSupplimentalConfigMgrModule)
+
 ## Overview
 
 This module is intended to extend the functionality of the native Microsoft Configuration Manager module. It adds some functionality and convenience to existing features.
