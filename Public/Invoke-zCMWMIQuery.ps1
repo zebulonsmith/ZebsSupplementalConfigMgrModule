@@ -18,10 +18,10 @@ function Invoke-zCMWMIQuery {
       has a similar cmdlet called 'Invoke-CMWMIQuery.' The same results are returned whether CIM or WMI is used.
 
       .EXAMPLE
-      Get-zCMWMIQUery -query "Select * from SMS_CombinedDeviceResources where ResourceID = '167896'"
+      Invoke-zCMWMIQUery -query "Select * from SMS_CombinedDeviceResources where ResourceID = '167896'"
 
       .EXAMPLE
-      Get-zCMWMIQuery -query "Select * from SMS_CombinedDeviceResources where ResourceID = '167896'" -SiteInfo ([zCMSiteInfo]::new("Servername","SiteCode"))
+      Invoke-zCMWMIQuery -query "Select * from SMS_CombinedDeviceResources where ResourceID = '167896'" -SiteInfo ([zCMSiteInfo]::new("Servername","SiteCode"))
 
       .PARAMETER Query
       A valid WMI query to perform against the Site Server's root\SMS\Site_[SITECODE] namespace.

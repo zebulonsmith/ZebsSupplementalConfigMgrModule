@@ -57,7 +57,7 @@ Performs a more basic query than Invoke-zCMAdvancedWMIQuery and can't limit to a
 Invoke-zCMWMIQuery -query "Select * from SMS_R_System"
 
 #Perform a query from a device that does not have the console installed and doesn't know where the site server is
-Get-zCMWMIQuery -query "Select * from SMS_CombinedDeviceResources where ResourceID = '167896'" -SiteInfo ([zCMSiteInfo]::new("Servername","SiteCode"))
+Invoke-zCMWMIQuery -query "Select * from SMS_CombinedDeviceResources where ResourceID = '167896'" -SiteInfo ([zCMSiteInfo]::new("Servername","SiteCode"))
 ```
 
 ## Convenience
