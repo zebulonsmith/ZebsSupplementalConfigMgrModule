@@ -11,7 +11,7 @@ Test-zCMPSDrive -SiteInfo [zCMSiteInfo]::new()
 Function Test-zCMPSDrive {
     Param (
         # Site Info Object to validate
-        [Parameter(Mandatory=$true, ValueFromPipeline)]
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
         [zCMSiteInfo]
         $SiteInfo
     )

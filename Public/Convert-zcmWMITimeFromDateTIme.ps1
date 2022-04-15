@@ -21,9 +21,9 @@ Function Convert-zCMWMITimeFromDateTime {
         $DateTime
     )
 
-  
+
     #Convert to the standard DMTF format used by WMI.
-    $WMITime = [System.Management.ManagementDateTimeConverter]::ToDmtfDateTime($dateTime)
+    $WMITime = [System.Management.ManagementDateTimeConverter]::ToDmtfDateTime($DateTime.ToString())
 
     Return $WMITime
 
