@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'ZebsSupplimentalConfigMgrModule.psm1'
+RootModule = 'ZebsSupplementalConfigMgrModule.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0.6'
