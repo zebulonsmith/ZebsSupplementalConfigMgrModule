@@ -52,7 +52,7 @@ function New-zCMSiteServerObject {
 
         [parameter(Mandatory,ParameterSetName="AllProperties")]
         [String]$MSConfigMgrModulePath
-        
+
     )
 
     Switch ($PSCmdlet.ParameterSetName) {
@@ -70,7 +70,7 @@ function New-zCMSiteServerObject {
             if ( !(Test-Path -Path $MSConfigMgrModulePath) ) {
                 Write-Warning "Unable to resolve path $MSConfigMgrModulePath"
             }
-            
+
             Try {
                 $SiteInfo = [zCMSiteInfo]::new($SCCMSiteServerName, $SCCMSiteCode, $MSConfigMgrModulePath)
             } Catch {

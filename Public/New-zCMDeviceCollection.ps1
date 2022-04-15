@@ -46,6 +46,10 @@ $QryRules = @(
     'select SMS_R_SYSTEM.ResourceID,SMS_R_SYSTEM.ResourceType,SMS_R_SYSTEM.Name,SMS_R_SYSTEM.SMSUniqueIdentifier,SMS_R_SYSTEM.ResourceDomainORWorkgroup,SMS_R_SYSTEM.Client from SMS_R_System inner join SMS_G_System_OPERATING_SYSTEM on SMS_G_System_OPERATING_SYSTEM.ResourceID = SMS_R_System.ResourceId where SMS_G_System_OPERATING_SYSTEM.Caption like "Microsoft Windows XP %"'
     )
 New-zCMDeviceCollection -CollectionName "Test" -LimitingCollectionName "All Systems" -DestinationFolderPath 'CCM:\DeviceCollection\Folder' -CollectionComment "This is a test" -MembershipQueryRules $QryRules
+
+.EXAMPLE
+#Create a device collection with a query to include devices in the Domain.com/Path/To/Computers
+New-zCMDeviceCollection -CollectionName "Collection Name" -LimitingCollectionName "All Desktop and Server Clients" -MembershipQueryRules (New-zCMDeviceCollectionSystemOUPathQueryRUle -OUPath "Domain.com/Path/To/Computers")
 #>
 Function New-zCMDeviceCollection {
     Param (

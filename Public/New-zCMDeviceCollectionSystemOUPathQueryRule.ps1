@@ -42,11 +42,11 @@ function New-zCMDeviceCollectionSystemOUPathQueryRule {
         [String]
         $OUPathOperator = "Equals"
     )
+    #Get an instance of the zCMWMIOperator class to help build the query
+    $zCMStringToWMIOperator = [zCMStringToWMIOperator]::new()
 
-    switch ($OUPathOperator) {
-        "Equals"    { Return "select * from  SMS_R_System where SMS_R_System.SystemOUName = `"$($OUPath)`"" }
-        "Like"      { Return "select * from  SMS_R_System where SMS_R_System.SystemOUName like `"$($OUPath)`"" }
-    }
+    Return "select * from SMS_R_System where SMS_R_System.SystemOUName $($zCMStringToWMIOperator.StringToOperator($OUPathOperator)) `"$($OUPath)`""
+
 
 }
 
