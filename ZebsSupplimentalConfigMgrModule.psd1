@@ -57,7 +57,7 @@ PowerShellVersion = '5.1'
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = @("$PSScriptRoot\Classes\zCMSiteInfo.ps1") #Load the class here
+#ScriptsToProcess = @("$PSScriptRoot\Classes\zCMSiteInfo.ps1") #Load the class here
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
