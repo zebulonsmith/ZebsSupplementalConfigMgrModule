@@ -1,7 +1,7 @@
 <#
 This class creates an object that represents the information needed to connect to an MS ConfigMgr Primary Site Server
 
-Instances of the class will indicate the Server Name, Site Code, Path to the MS ConfigMgr Powershell Module, 
+Instances of the class will indicate the Server Name, Site Code, Path to the MS ConfigMgr Powershell Module,
 and whether or not the module loaded and PSDrive was created.
 
 This module is intended to allow the usage of cmdlets that do not require the MS ConfigMgr module independently, so we will not throw

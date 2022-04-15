@@ -1,11 +1,49 @@
 <#
 .DESCRIPTION
 Extends the functionality in Get-zCMWMIQuery to let us limit the scope of a query to a specific collection using
-native Configuration Manager functionality.
+native Configuration Manager functionality. Also retrieves "nicer" results for queries using Extended WQL than other
+methods. (https://docs.microsoft.com/en-us/mem/configmgr/develop/core/understand/extended-wmi-query-language)
 
 Requires that the Configuration Manager console is installed as it leverages the
 WqlQueryEngine provider in C:\Program Files (x86)\Microsoft Endpoint Manager\AdminConsole\bin\adminui.wqlqueryengine.dll
 
+This method is slower than Invoke-CMWmiQuery and Invoke-zCMWMIQuery, but has the advantage that it can be scoped to a collection.
+
+To see the differences in what's returned, try the following. Be sure to execute each query cmdlet one at a time so that the
+differences can be seen.
+
+$query = "Select DISTINCT resourceID from sms_r_system where name = '$($env:computername)'"
+
+Invoke-zCMWMIQuery -Query $query
+
+Invoke-zCMAdvancedWMIQuery -Query $query
+
+Invoke-CMWmiQuery -Query $query
+
+.PARAMETER Query
+The WQL query to execute. Can be passed via the pipeline.
+
+.PARAMETER CollectionName
+Limit results to members of the named collection
+
+.PARAMETER CollectionID
+Limit results to members of the collection with this ID
+
+.PARAMETER SiteInfo
+An instance of zCMSiteInfo representing the SCCM Site Server to query against. Will be created using default configuration if not specified.
+
+.EXAMPLE
+#Query all devices
+$query = New-zCMDeviceCollectionInstalledSoftwareQueryRule -ProductName "%Office%" -ProductNameOperator "like"
+Invoke-zCMAdvancedWMIQuery -Query $query
+
+.EXAMPLE
+#Query only the 'Accounting Computers' collection
+"Select * from SMS_R_System" | Invoke-zCMAdvancedWMIQuery -Query $query -CollectionName "Accounting Computers"
+
+.EXAMPLE
+#Query devices from the collection ZEB000001
+"Select * from SMS_R_System" | Invoke-zCMAdvancedWMIQuery -Query $query -CollectionID "ZEB000001"
 #>
 
 
@@ -15,18 +53,21 @@ function Invoke-zCMAdvancedWMIQuery {
         [Parameter(
             Mandatory=$true,
             ParameterSetName="CollectionID",
+            ValueFromPipeline=$true,
             HelpMessage="Query to execute against Configuration Manager."
             )
         ]
         [Parameter(
             Mandatory=$true,
             ParameterSetName="CollectionName",
+            ValueFromPipeline=$true,
             HelpMessage="Query to execute against Configuration Manager."
             )
         ]
         [Parameter(
             Mandatory=$true,
             ParameterSetName="Default",
+            ValueFromPipeline=$true,
             HelpMessage="Query to execute against Configuration Manager."
             )
         ]
