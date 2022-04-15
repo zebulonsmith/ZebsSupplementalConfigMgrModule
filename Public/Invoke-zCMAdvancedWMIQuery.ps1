@@ -109,7 +109,7 @@ function Invoke-zCMAdvancedWMIQuery {
             HelpMessage="Instance zCMSiteInfo class. Only needs to be set when the site server needs to be specified, otherwise the site server associated with the current user's Configuration Manager console settings."
             )
         ]
-        [zCMSiteInfo]$SiteInfo = [zCMSiteInfo]::new()
+        $SiteInfo = [zCMSiteInfo]::new()
     )
 
     #Make sure that we have the ConfigMgr Module Loaded and are connected to a CM PS Drive

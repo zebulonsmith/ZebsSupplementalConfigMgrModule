@@ -51,7 +51,7 @@ Function Get-zCMDeviceCollectionMembership {
         [SWITCH]$NoReturnObject,
         #Instance zCMSiteInfo class. Only needs to be set when the site server needs to be specified
         [Parameter(Mandatory=$false)]
-        [zCMSiteInfo]$SiteInfo = [zCMSiteInfo]::new()
+        $SiteInfo = [zCMSiteInfo]::new()
 
     )
 

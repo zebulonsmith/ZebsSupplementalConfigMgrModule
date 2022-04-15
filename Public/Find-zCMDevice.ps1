@@ -42,7 +42,7 @@ function Find-zCMDevice {
 
         #Instance zCMSiteInfo class. Only needs to be set when the site server needs to be specified
         [Parameter(Mandatory=$false)]
-        [zCMSiteInfo]$SiteInfo = [zCMSiteInfo]::new()
+        $SiteInfo = [zCMSiteInfo]::new()
     )
 
     #Make sure that we have the ConfigMgr Module Loaded and are connected to a CM PS Drive

@@ -67,9 +67,8 @@ Function New-zCMDeviceCollection {
         [Parameter(Mandatory=$false)]
         [string]
         $CollectionComment = "",
-        
-        # Array of strings representing query rules for the collection. May be left empty.      
-        [Parameter(Mandatory=$false)]
+
+        # Array of strings representing query rules for the collection. May be left empty.
         [string[]]
         $MembershipQueryRules,
 
@@ -81,7 +80,7 @@ Function New-zCMDeviceCollection {
         [Parameter(Mandatory=$false)]
         [string]
         $DestinationFolderPath,
-        
+
         # Attempt to delete the object is it is not created properly
         [Parameter(Mandatory=$false)]
         [switch]
@@ -127,7 +126,7 @@ Function New-zCMDeviceCollection {
         catch {
             Write-Error "Unable to create CMSchedule object."
             Throw $_
-        }        
+        }
     } else {
         Write-Verbose "Validating that $CMSchedule is the correct type."
         if ($CMSchedule.GetType().name -ne "WqlArrayItems") {
@@ -174,7 +173,7 @@ Function New-zCMDeviceCollection {
         }
     }
 
-    #Move collection as required    
+    #Move collection as required
     if ($DestinationFolderPath) {
         Write-Verbose "Moving Collection to $DestinationFolderPath"
         try {
