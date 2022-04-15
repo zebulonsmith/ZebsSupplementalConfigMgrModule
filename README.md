@@ -1,7 +1,8 @@
 # ZebsSupplimentalConfigMgrModule
 
-[https://github.com/zebulonsmith/ZebsSupplimentalConfigMgrModule](https://github.com/zebulonsmith/ZebsSupplimentalConfigMgrModule)
+[https://github.com/zebulonsmith/ZebsSupplimentalConfigMgrModule](https://github.com/zebulonsmith/ZebsSupplimentalConfigMgrModule)  
 [https://www.powershellgallery.com/packages/ZebsSupplimentalConfigMgrModule](https://www.powershellgallery.com/packages/ZebsSupplimentalConfigMgrModule)
+
 ## Overview
 
 This module is intended to extend the functionality of the native Microsoft Configuration Manager module. It adds some functionality and convenience to existing features.
@@ -32,7 +33,7 @@ New-zCMUserCollection -CollectionName "Accounting Users" -LimitingCollectionName
 
 ### Invoke-zCMAdvancedWMIQuery
 
-There isn't currently a good native method of executing a WQL query that's limited to a single collection. This cmdlet fills that gap and also provides better output when using [Extended WQL](https://docs.microsoft.com/en-us/mem/configmgr/develop/core/understand/extended-wmi-query-language) in queries.
+There isn't currently a good native method of executing a WQL query that's limited to a single collection with PowerShell. This cmdlet fills that gap and also provides better output when using [Extended WQL](https://docs.microsoft.com/en-us/mem/configmgr/develop/core/understand/extended-wmi-query-language) in queries.
 
 ```powershell
 #Show differences in output when using Extended WQL
