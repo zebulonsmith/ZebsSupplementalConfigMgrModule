@@ -1,8 +1,10 @@
 <#
 .DESCRIPTION
 Extends the functionality in Get-zCMWMIQuery to let us limit the scope of a query to a specific collection using
-native Configuration Manager functionality. Also retrieves "nicer" results for queries using Extended WQL than other
-methods. (https://docs.microsoft.com/en-us/mem/configmgr/develop/core/understand/extended-wmi-query-language)
+native Configuration Manager functionality. Also retrieves "nicer" results for queries using Extended WQL or 'Special Queries' than other
+methods.
+https://docs.microsoft.com/en-us/mem/configmgr/develop/core/understand/extended-wmi-query-language
+https://docs.microsoft.com/en-us/mem/configmgr/develop/core/understand/special-queries
 
 Requires that the Configuration Manager console is installed as it leverages the
 WqlQueryEngine provider in C:\Program Files (x86)\Microsoft Endpoint Manager\AdminConsole\bin\adminui.wqlqueryengine.dll

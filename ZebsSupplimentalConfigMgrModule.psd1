@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'Smitty-ConfigMgrModule.psm1'
+RootModule = 'ZebsSupplimentalConfigMgrModule.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0.5'
@@ -57,7 +57,7 @@ PowerShellVersion = '5.0'
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = @("$PSScriptRoot\Classes\zCMSiteInfo.ps1") #Load the class here 
+ScriptsToProcess = @("$PSScriptRoot\Classes\zCMSiteInfo.ps1") #Load the class here
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()

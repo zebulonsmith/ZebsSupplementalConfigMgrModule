@@ -23,7 +23,7 @@ Function Convert-zCMWMITimeFromDateTime {
 
 
     #Convert to the standard DMTF format used by WMI.
-    $WMITime = [System.Management.ManagementDateTimeConverter]::ToDmtfDateTime($DateTime.ToString())
+    $WMITime = [System.Management.ManagementDateTimeConverter]::ToDmtfDateTime($DateTime)
 
     Return $WMITime
 

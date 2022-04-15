@@ -19,7 +19,7 @@ Will be created using default configuration if not specified, which will work fi
 Find-zCMDevice -MacAddress "AA-BB-CC-DD-EE-FF"
 
 .EXAMPLE
-Find-zCMDevice -SerialNumber "ABC1234" -ShowPrettyOutput
+Find-zCMDevice -SerialNumber "ABC1234" -ShowFriendlyOutput
 
 #>
 function Find-zCMDevice {

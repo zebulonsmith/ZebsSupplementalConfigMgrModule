@@ -46,7 +46,7 @@ Function ConvertTo-zCMMacAddress {
         #Regex match to verify that the final result is a valid mac
         if (!($newmac -match "^(([a-fA-F0-9]{2}[:]){5}[a-fA-F0-9]{2})$")) {
             Write-Verbose "Mac $newmac is not valid"
-            Throw [System.FormatException]::new("The provided MAC address is invalid. Please use the format 'aa:bb:cc:dd:ee:ff'")    
+            Throw [System.FormatException]::new("The provided MAC address is invalid. Please use the format 'aa:bb:cc:dd:ee:ff'")
         } else {
             Write-Verbose "Mac $newmac passed validation. Will be returned."
             $results.add($newmac) | out-null
