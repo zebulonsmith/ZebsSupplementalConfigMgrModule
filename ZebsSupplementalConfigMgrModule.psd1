@@ -21,7 +21,7 @@ ModuleVersion = '1.0.6'
 GUID = '9a6297b7-f02c-406b-8a8a-fe1da7561873'
 
 # Author of this module
-Author = 'Zeb Smith - wzebulonsmith@outlook.com'
+Author = 'Zeb Smith'
 
 # Company or vendor of this module
 CompanyName = 'TheSmithProjects.com'
