@@ -1,4 +1,4 @@
-$script:ModuleName = 'ZebsSupplimentalConfigMgrModule'
+$script:ModuleName = 'ZebsSupplementalConfigMgrModule'
 
 ##Import Classes
 if (Test-Path "$PSScriptRoot\Classes\classes.psd1") {
